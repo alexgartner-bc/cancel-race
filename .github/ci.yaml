@@ -1,0 +1,14 @@
+name: 'ci'
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+jobs:
+  ci:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-ci
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
